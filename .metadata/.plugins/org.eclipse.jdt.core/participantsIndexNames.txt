@@ -1,0 +1,9 @@
+INDEX VERSION 1.131
+/Users/junee/Documents/workspace-sts-3.9.12.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2604819743.index
+/springWebStudy/src/main/java
+/Users/junee/Documents/workspace-sts-3.9.12.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1630507530.index
+/jex00/src/main/java
+/Users/junee/Documents/workspace-sts-3.9.12.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2823366579.index
+/springWebStudy/src/main/java
+/Users/junee/Documents/workspace-sts-3.9.12.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2485023825.index
+/ex00/src/main/java
