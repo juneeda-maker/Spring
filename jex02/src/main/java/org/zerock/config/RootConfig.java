@@ -23,7 +23,7 @@ public class RootConfig {
 		hikariConfig.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@localhost:1521:XE");
 		
 		hikariConfig.setUsername("book_ex");
-		hikariConfig.setPassword("4940");
+		hikariConfig.setPassword("book_ex");
 		
 		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
 		
