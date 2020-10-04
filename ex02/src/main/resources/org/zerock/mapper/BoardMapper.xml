@@ -27,4 +27,21 @@ select * from tb1_board where bno > 0
 	insert into tb1_board (bno,title,content, writer) values (#{bno}, #{title}, #{content}, #{writer})
 </insert>
 
+<select id="read" resultType="org.zerock.domain.BoardVO">
+ select * from tb1_board where bno = #{bno}
+</select>
+
+<delete id="delete" >
+	delete from tb1_board where bno = #{bno}
+</delete>
+
+<update id="update">
+	update tb1_board
+	set title= #{title},
+	content=#{content},
+	writer = #{writer},
+	updateDate = sysdate
+	where bno = #{bno}
+</update>
+
 </mapper>	
