@@ -56,6 +56,41 @@
 	<!--  end panel -->
 </div>
 <!-- /.row -->
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+<script>
+
+console.log("==========");
+console.log("JS TEST");
+
+var bnoValue = '<c:out value="${board.bno}"/>';
+
+replyService.getList({bno:bnoValue, page:1}, function(list){
+
+	for(var i = 0, len = list.length||0; i < len; i++){
+		console.log(list[i]);
+	}	
+});
+//4번 댓글 삭제 테스트	
+replyService.remove(23, function(count){
+
+	console.log(count);
+	
+	if(count === "success"){
+		alert("REMOVED");
+	}
+}, function(err) {
+	alert('ERROR...');
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log(replyService);
+});
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
