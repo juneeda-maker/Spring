@@ -47,11 +47,11 @@ select * from tb1_board where bno > 0
 <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 	<![CDATA[
 	select
-		bno, title, content, writer, regdate, updatedate
+		bno, title, content, writer, regdate, updatedate, replycnt
 	from
 	 (
 	 select /*+INDEX_DESC(tb1_board pk_board) */
-	 	rownum rn, bno, title, content, writer, regdate, updatedate
+	 	rownum rn, bno, title, content, writer, regdate, updatedate, replycnt
 	 	from
 	 		tb1_board
 	 	where
@@ -94,5 +94,9 @@ select * from tb1_board where bno > 0
 		</foreach>
 	</trim>
 </sql>
+
+<update id="updateReplyCnt">
+	update tb1_board set replycnt = replycnt + #{amount} where bno = #{bno}
+</update>
 
 </mapper>	
