@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,7 +47,7 @@ public class UploadController {
 	@PostMapping("/uploadFormAction")
 	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
 		
-		String uploadFolder = "/Users/tmp";
+		String uploadFolder = "/Users/junee/prc/tmp";
 		
 		for (MultipartFile multipartFile : uploadFile) {
 			
@@ -87,7 +88,7 @@ public class UploadController {
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 
 		List<AttachFileDTO> list = new ArrayList<>();
-		String uploadFolder = "/Users/tmp";
+		String uploadFolder = "/Users/junee/prc/tmp";
 
 		String uploadFolderPath = getFolder();
 		// make folder --------
@@ -128,6 +129,9 @@ public class UploadController {
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					
+					
+					
 
 					thumbnail.close();
 				}
@@ -143,23 +147,21 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	private boolean checkImageType(File file) {
-		
-		try {
-			Magic magic = new Magic();
-			MagicMatch match = magic.getMagicMatch(file, false);
-			String contentType = match.getMimeType();
-			return contentType.startsWith("image");
-			
-		}catch (MagicException e) {
-			e.printStackTrace();
-		}catch(MagicMatchNotFoundException e) {
-			e.printStackTrace();
-		}catch(MagicParseException e) {
-			e.printStackTrace();
-	}
-		return false;
-}		
+	 private boolean checkImageType(File file) {
+		 
+	        try {
+	            String contentType = Files.probeContentType(file.toPath());
+	 
+	            return contentType.startsWith("image");
+	 
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	 
+	        return false;
+	    }
+	
 	
 	@GetMapping("/display")
 	@ResponseBody
@@ -167,7 +169,7 @@ public class UploadController {
 		
 		log.info("fileName: " + fileName);
 		
-		File file = new File("/Users/tmp" + fileName);
+		File file = new File("/Users/junee/prc/tmp/" + fileName);
 		
 		log.info("file: " + file);
 		
