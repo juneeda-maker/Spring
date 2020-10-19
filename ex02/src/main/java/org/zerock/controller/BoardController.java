@@ -24,6 +24,11 @@ public class BoardController {
 	
 	private BoardService service;
 	
+	@GetMapping("/register")
+	public void register() {
+
+	}
+	
 //	@GetMapping("/list")
 //	public void list(Model model) {
 //		log.info("list");
@@ -54,9 +59,23 @@ public class BoardController {
 		}
 		return "redirect:/board/list" + cri.getListLink();
 	}
-	@GetMapping("/register")
-	public void register() {
+	@PostMapping("/register")
+	public String register(BoardVO board, RedirectAttributes rttr) {
 		
+		log.info("===========");
+		
+		log.info("register: " + board);
+		
+		if(board.getAttachList() != null) {
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
+		log.info("================");
+		//service.register(board);
+		
+		//rttr.addFlashAttribute("result", board.getBno());
+		
+		return "redirect:/board/list";
 	}
 	
 	
