@@ -6,7 +6,7 @@
 
 	<insert id="insert">
 	insert into tb1_attach (uuid, uploadpath, filename, filetype, bno)
-	values (#{uuid}, #{uploadpath}, #{fileName}, #{fileType}, #{bno})
+	values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
 	</insert>
 	
 	<delete id="delete">

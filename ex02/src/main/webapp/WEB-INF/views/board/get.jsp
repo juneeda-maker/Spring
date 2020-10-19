@@ -387,4 +387,18 @@ $(document).ready(function(){
 
 </script>
 
+<script>
+
+$(document).ready(function(){
+
+	(function(){
+		var bno = '<c:out value="${board.bno}"/>';
+		
+		$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+			console.log(arr);
+		}); //end getjson
+	})();//end function 
+});
+</script>
+
 <%@include file="../includes/footer.jsp" %>
