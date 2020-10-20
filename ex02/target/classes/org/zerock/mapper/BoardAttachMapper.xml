@@ -16,6 +16,13 @@
 	<select id="findByBno" resultType="org.zerock.domain.BoardAttachVO">
 	select * from tb1_attach where bno = #{bno}
 	</select>
-
-
+	
+	<delete id="deleteAll">
+		delete tb1_attach where bno = #{bno}
+	</delete>
+	
+	<select id="getOldFiles" resultType="org.zerock.domain.BoardAttachVO">
+		select * from tb1_attach where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
+	</select>
+		
 </mapper>	
