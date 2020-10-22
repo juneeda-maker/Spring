@@ -13,6 +13,8 @@
 		class="org.zerock.security.CustomLoginSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService"
+		class="org.zerock.security.CustomUserDetailsService"></bean>	
 
 	<!-- <bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"></bean> -->
 
@@ -38,15 +40,13 @@
 
 		<!-- <security:csrf disabled="true"/> -->
 
-		<security:logout logout-url="/customLogout"
-			invalidate-session="true" />
 
 		<security:remember-me
 			data-source-ref="dataSource" token-validity-seconds="604800" />
-
+			
 		<security:logout logout-url="/customLogout"
-			invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
-
+			invalidate-session="true" delete-cookies="remember-me,JSESSION_ID"/>	
+		
 
 	</security:http>
 
@@ -69,11 +69,12 @@
 
 	<security:authentication-manager> 
 
-		<security:authentication-provider>
+		<security:authentication-provider
+			user-service-ref="customUserDetailsService">
 
-			<security:jdbc-user-service data-source-ref="dataSource"
+			 <!--  <security:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select userid, userpw, enabled from tb1_member where userid = ?"
-				authorities-by-username-query="select userid, auth from tb1_member_auth where userid = ?" />
+				authorities-by-username-query="select userid, auth from tb1_member_auth where userid = ?" />  -->
 			
 			
 			
