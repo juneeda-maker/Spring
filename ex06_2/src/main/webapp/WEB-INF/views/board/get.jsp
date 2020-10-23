@@ -400,6 +400,19 @@ $(document).ready(function () {
     var modalRemoveBtn = $("#modalRemoveBtn");
     var modalRegisterBtn = $("#modalRegisterBtn");
     
+  var replyer = null;
+    
+    <sec:authorize access="isAuthenticated()">
+    
+    replyer = '<sec:authentication property="principal.username"/>';   
+    
+	</sec:authorize>
+	
+
+    var csrfHeaderName ="${_csrf.headerName}"; 
+    var csrfTokenValue="${_csrf.token}";
+ 
+    
     $("#modalCloseBtn").on("click", function(e){
     	
     	modal.modal('hide');
@@ -585,16 +598,7 @@ $(document).ready(function () {
    	});
 
    	
-    var replyer = null;
-    
-    <sec:authorize access="isAuthenticated()">
-    
-    replyer = '<sec:authentication property="principal.username"/>';   
-    
-</sec:authorize>
- 
-    var csrfHeaderName ="${_csrf.headerName}"; 
-    var csrfTokenValue="${_csrf.token}";
+  
 
 
  

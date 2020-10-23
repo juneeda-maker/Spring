@@ -150,7 +150,7 @@ var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	
 
 	var csrfHeaderName ="${_csrf.headerName}";
-		var csrfTokenValue="${csrf.token}";
+		var csrfTokenValue="${_csrf.token}";
 	
 	$("input[type='file']").change(function(e){
 	
