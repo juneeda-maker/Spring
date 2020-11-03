@@ -80,13 +80,13 @@ $(document).ready(function(){
 		
 		console.log(operation);
 		
-		if(operator === 'remove') {
+		if(operation === 'remove') {
 			formObj.attr("action", "/board/remove");
 			
 		}else if(operation === 'list') {
 			//move to list
-			self.location= "/board/list";
-			return;
+			formObj.attr("action","/board/list").attr("method","get");
+			formObj.empty();
 		}
 		formObj.submit();
 	});
