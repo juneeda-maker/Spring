@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,13 @@ public class BoardController {
 		
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		//model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		
+		int total = service.getTotal(cri);
+		
+		log.info("total: "+total);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	
@@ -48,30 +55,33 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/get","/modify"})
-	public void get(@RequestParam("bno") Long bno, Model model) {
+	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bno)); //Model 객체를 사용하여 view 에 데이터 넘기기.
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes rttr) {
+	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + board);
 		
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/board/list";
+		
+		return "redirect:/board/list" + cri.getListLink();
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+	public String remove(@RequestParam("bno") Long bno, Criteria cri ,RedirectAttributes rttr) {
 		
 		log.info("remove...." + bno);
 		if(service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/board/list";
+		
+		
+		return "redirect:/board/list" + cri.getListLink();
 	}
 	
 	@GetMapping("/register")
