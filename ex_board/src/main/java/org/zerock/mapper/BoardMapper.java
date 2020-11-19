@@ -8,6 +8,9 @@ import org.zerock.domain.Criteria;
 
 public interface BoardMapper {
 	
+	//Mybatis 매핑 XML에 기재된 SQL을 호출 하기 위한 인터페이스.
+	//src/main/resources / org/zerock/mapper/ BoardMapper.xml에 쿼리문 작성함.
+	
 	//@Select("select * from tbl_board where bno > 0")
 	public List<BoardVO> getList();
 	

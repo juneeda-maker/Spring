@@ -2,7 +2,7 @@ package org.zerock.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.ui.Model; //model 인터페이스를 위한.
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,20 +18,23 @@ import org.zerock.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Service
-@Controller
-@Log4j
-@RequestMapping("/board/*")
-@AllArgsConstructor
+@Service //@Service를 적용한 Class는 비지니스 로직이 들어가는 Service로 등록이 된다. 
+@Controller //해당 클래스를 웹 요청을 처리하는 컨트롤러로 사용한다.
+@Log4j //log.info 사용 가능하게 해줌.
+@RequestMapping("/board/*")  //기본 url 경로를 지정해줌.
+@AllArgsConstructor //모든 필드 값을 파라미터로 받는 생성자를 만들어줌.
 public class BoardController {
 
 	private BoardService service;
 	
-	@GetMapping("/list")
+	@GetMapping("/list") 
 	public void list(Criteria cri, Model model) {
 		
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
+		//Model addAttribute(String name, Object value)
+
+		
 		//model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		
 		int total = service.getTotal(cri);
@@ -43,13 +46,17 @@ public class BoardController {
 	
 	
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(BoardVO board, RedirectAttributes rttr ) {
+	
+		
 		
 		log.info("register: " + board);
 		
 		service.register(board);
 		
 		rttr.addFlashAttribute("result", board.getBno());
+		//RedirectAttributes rttr.addFlashAttribute(이름, 값 )
+		//화면에 한번만 사용하고 다음에는 사용되지 않는 데이터를 전달하기 위해 사용.
 		
 		return "redirect:/board/list";
 	}
