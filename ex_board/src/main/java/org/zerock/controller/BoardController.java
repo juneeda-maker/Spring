@@ -63,6 +63,10 @@ public class BoardController {
 	
 	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		//@RequestParam("가져올 데이터의 이름") 은 파라미터의 값을 가져온다.
+		//@ModelAttribute("name") name으로 클래스의 객채를 자동생성, 자동으로 Model 객체에 추가 되고 뷰(view)단으로 전달된다.
+		//Model model 객체는 JSP Servlet 에서 처럼 request or session 내장객체에 정보를 담아 넘겨주는것과 비슷한 역할.
+		
 		
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bno)); //Model 객체를 사용하여 view 에 데이터 넘기기.

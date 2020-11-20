@@ -21,6 +21,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this(1,10);
+		//this() <- 같은 클래스의 다른 생성자 호출할떄 사용 .
 	}
 	
 	public Criteria(int pageNum, int amount) {
@@ -34,6 +35,9 @@ public class Criteria {
 	
 	public String getListLink() {
 		
+		
+		//UriCOmponentsBuilder 여러개의 파라미터를 연결해서 하나의 URL을 제공.
+		//fromPath(String path) 주어진 경로와 시작하는 빌더를 생성한다.
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 				.queryParam("pageNum", this.pageNum)
 				.queryParam("amount", this.getAmount())
