@@ -70,6 +70,10 @@ public class BoardController {
 		
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bno)); //Model 객체를 사용하여 view 에 데이터 넘기기.
+		// ex) model.addAttribute("key", "value")
+		//model.addAttribute("value", "hi")라고 하면 
+		//getAttribute("key") 
+		//view(jsp)에서 <%= reqeust.getAttribute("value") %>로 받을수 있음.
 	}
 	
 	@PostMapping("/modify")

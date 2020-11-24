@@ -101,6 +101,9 @@ public class BoardMapperTests {
 		List<BoardVO> list = mapper.getListWithPaging(cri);
 		
 		list.forEach(board -> log.info(board));
+		//collection.forEach(변수 -> 반복처리(변수))
+		//위의 조건을 가진 모든 글을 찾아냄 (반복).
+		
 	}
 
 }
