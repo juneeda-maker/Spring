@@ -76,6 +76,7 @@ public class BoardController {
 		//view(jsp)에서 <%= reqeust.getAttribute("value") %>로 받을수 있음.
 	}
 	
+	//수정을 위한 
 	@PostMapping("/modify")
 	public String modify(BoardVO board, Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + board);
