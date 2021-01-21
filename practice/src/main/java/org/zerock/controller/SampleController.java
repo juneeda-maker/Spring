@@ -4,14 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.domain.SampleDTO;
 import org.zerock.domain.SampleDTOList;
 import org.zerock.domain.TodoDTO;
@@ -97,5 +98,25 @@ public class SampleController {
 		
 		return "/sample/ex04";
 	}
+	
+	
+	
+	@GetMapping("/ex05")
+	public void ec05() //void 타입의 메서드의 경우 해당 URL의 경로를 그대로 jsp파일의 이름으로 사용하게 된다. 
+	{
+		log.info("/ex05......");
+	}
+	
+	@GetMapping("/ex06") //객체 타입 
+	public @ResponseBody SampleDTO ex06()
+	{
+		log.info("/ex06.....");
+		SampleDTO dto = new SampleDTO();
+		dto.setAge(10);
+		dto.setName("홍길동");
+		
+		return dto;
+	}
+	
 	
 }
