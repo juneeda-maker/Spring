@@ -70,4 +70,6 @@ public class BoardServiceTests {
 		log.info("MODIFY RESULT: " + service.modify(board));
 	}
 	
+	
+	
 }
