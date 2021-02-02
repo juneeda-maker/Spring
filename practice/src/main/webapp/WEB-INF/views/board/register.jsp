@@ -41,9 +41,7 @@
                         		<button type="submit" class="btn btn-default">Submit Button</button>
                         		<button type="reset" class="btn btn-default">Reset Button</button>
                         	</form>
-                        	
                         
-                            
                
                         	</div>
                         <!-- /.panel-body -->
